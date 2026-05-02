@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Preview</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="importmap">{"imports":{"react":"https://esm.sh/react@18.3.1","react-dom":"https://esm.sh/react-dom@18.3.1","react-dom/client":"https://esm.sh/react-dom@18.3.1/client","react/jsx-runtime":"https://esm.sh/react@18.3.1/jsx-runtime"}}</script>
+<script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
+<style>
+  html,body,#root{height:100%;margin:0}
+  body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif}
+  
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  window.__MODULES__ = {"src/App.tsx":"import React, { useState } from \"react\";\nimport BatterySection from \"./BatterySection\";\nimport MotorSection from \"./MotorSection\";\nimport BrakesSection from \"./BrakesSection\";\nimport TiresSection from \"./TiresSection\";\n\nconst App: React.FC = () => {\n  const [activeSection, setActiveSection] = useState<string>(\"battery\");\n\n  const renderSection = () => {\n    switch (activeSection) {\n      case \"battery\":\n        return <BatterySection />;\n      case \"motor\":\n        return <MotorSection />;\n      case \"brakes\":\n        return <BrakesSection />;\n      case \"tires\":\n        return <TiresSection />;\n      default:\n        return <BatterySection />;\n    }\n  };\n\n  return (\n    <div className=\"min-h-screen bg-gray-100\">\n      <header className=\"bg-blue-600 text-white p-6\">\n        <h1 className=\"text-3xl font-bold text-center\">Electric Bike Repair Guide</h1>\n        <p className=\"text-center mt-2\">Learn how to maintain and repair your e-bike</p>\n      </header>\n\n      <div className=\"container mx-auto px-4 py-8\">\n        <div className=\"flex flex-wrap justify-center mb-8\">\n          <button\n            onClick={() => setActiveSection(\"battery\")}\n            className={`px-4 py-2 m-2 rounded ${activeSection === \"battery\" ? \"bg-blue-600 text-white\" : \"bg-gray-200\"}`}\n          >\n            Battery\n          </button>\n          <button\n            onClick={() => setActiveSection(\"motor\")}\n            className={`px-4 py-2 m-2 rounded ${activeSection === \"motor\" ? \"bg-blue-600 text-white\" : \"bg-gray-200\"}`}\n          >\n            Motor\n          </button>\n          <button\n            onClick={() => setActiveSection(\"brakes\")}\n            className={`px-4 py-2 m-2 rounded ${activeSection === \"brakes\" ? \"bg-blue-600 text-white\" : \"bg-gray-200\"}`}\n          >\n            Brakes\n          </button>\n          <button\n            onClick={() => setActiveSection(\"tires\")}\n            className={`px-4 py-2 m-2 rounded ${activeSection === \"tires\" ? \"bg-blue-600 text-white\" : \"bg-gray-200\"}`}\n          >\n            Tires\n          </button>\n        </div>\n\n        <div className=\"bg-white rounded-lg shadow-md p-6\">\n          {renderSection()}\n        </div>\n      </div>\n\n      <footer className=\"bg-gray-800 text-white p-6 mt-8\">\n        <div className=\"container mx-auto text-center\">\n          <p>&copy; 2023 Electric Bike Repair Guide. All rights reserved.</p>\n        </div>\n      </footer>\n    </div>\n  );\n};\n\nexport default App;","src/BatterySection.tsx":"import React from \"react\";\n\nconst BatterySection: React.FC = () => {\n  return (\n    <div>\n      <h2 className=\"text-2xl font-bold mb-4\">Battery Maintenance</h2>\n      <p className=\"mb-4\">\n        Proper battery maintenance is crucial for the longevity and performance of your electric bike.\n      </p>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Regular Checks</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Check battery voltage regularly (should be between 48V and 56V for most e-bikes)</li>\n        <li>Inspect for any signs of swelling or leakage</li>\n        <li>Check the battery connections for corrosion</li>\n      </ul>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Charging Tips</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Use the charger that came with your bike</li>\n        <li>Avoid charging in extreme temperatures</li>\n        <li>Don't fully discharge the battery before recharging</li>\n      </ul>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Storage</h3>\n      <p className=\"mb-4\">\n        When storing your e-bike for long periods, keep the battery at around 50% charge.\n        Store in a dry, cool place away from direct sunlight.\n      </p>\n\n      <div className=\"bg-yellow-100 border-l-4 border-yellow-500 p-4 mt-6\">\n        <p className=\"font-bold\">Warning:</p>\n        <p>Never attempt to open or modify the battery pack yourself. This can be dangerous and may void your warranty.</p>\n      </div>\n    </div>\n  );\n};\n\nexport default BatterySection;","src/MotorSection.tsx":"import React from \"react\";\n\nconst MotorSection: React.FC = () => {\n  return (\n    <div>\n      <h2 className=\"text-2xl font-bold mb-4\">Motor Maintenance</h2>\n      <p className=\"mb-4\">\n        Regular motor maintenance ensures optimal performance and extends the life of your e-bike's motor.\n      </p>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Cleaning</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Clean the motor housing regularly with a soft cloth</li>\n        <li>Remove dust and debris from the motor fan</li>\n        <li>Check for any signs of oil leaks</li>\n      </ul>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Lubrication</h3>\n      <p className=\"mb-4\">\n        Apply a small amount of high-temperature grease to the motor bearings as needed.\n        This helps reduce friction and wear.\n      </p>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Inspection</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Check the motor mount for any signs of damage or looseness</li>\n        <li>Inspect the motor wiring for any signs of wear or damage</li>\n        <li>Check the motor controller for any error codes</li>\n      </ul>\n\n      <div className=\"bg-yellow-100 border-l-4 border-yellow-500 p-4 mt-6\">\n        <p className=\"font-bold\">Warning:</p>\n        <p>Never attempt to disassemble or repair the motor yourself. This can be dangerous and may void your warranty.</p>\n      </div>\n    </div>\n  );\n};\n\nexport default MotorSection;","src/BrakesSection.tsx":"import React from \"react\";\n\nconst BrakesSection: React.FC = () => {\n  return (\n    <div>\n      <h2 className=\"text-2xl font-bold mb-4\">Brake Maintenance</h2>\n      <p className=\"mb-4\">\n        Proper brake maintenance is essential for safe riding and to prevent brake fade.\n      </p>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Regular Checks</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Check brake pads for wear (should be at least 3mm thick)</li>\n        <li>Inspect brake calipers for proper alignment</li>\n        <li>Check brake fluid level (if your bike has hydraulic brakes)</li>\n      </ul>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Cleaning</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Clean brake pads and rotors regularly with a soft cloth</li>\n        <li>Remove brake dust from the bike frame</li>\n        <li>Check brake calipers for any signs of oil or grease buildup</li>\n      </ul>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Adjustment</h3>\n      <p className=\"mb-4\">\n        Regularly adjust your brakes to ensure proper stopping power.\n        Follow your bike manufacturer's instructions for brake adjustment.\n      </p>\n\n      <div className=\"bg-yellow-100 border-l-4 border-yellow-500 p-4 mt-6\">\n        <p className=\"font-bold\">Warning:</p>\n        <p>Never attempt to repair or replace brake components yourself if you're not experienced with bicycle mechanics.</p>\n      </div>\n    </div>\n  );\n};\n\nexport default BrakesSection;","src/TiresSection.tsx":"import React from \"react\";\n\nconst TiresSection: React.FC = () => {\n  return (\n    <div>\n      <h2 className=\"text-2xl font-bold mb-4\">Tire Maintenance</h2>\n      <p className=\"mb-4\">\n        Proper tire maintenance ensures a smooth ride and extends the life of your e-bike's tires.\n      </p>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Inflation</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Check tire pressure regularly (typically between 30-60 psi)</li>\n        <li>Use a tire pressure gauge to ensure accurate readings</li>\n        <li>Adjust tire pressure as needed based on your riding conditions</li>\n      </ul>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Cleaning</h3>\n      <ul className=\"list-disc pl-6 mb-4\">\n        <li>Clean tires regularly with a bike-specific cleaner</li>\n        <li>Remove dirt and debris from the tire beads</li>\n        <li>Check for any signs of wear or damage</li>\n      </ul>\n\n      <h3 className=\"text-xl font-semibold mb-2\">Rotation</h3>\n      <p className=\"mb-4\">\n        Rotate your tires regularly to ensure even wear.\n        This helps extend the life of your tires and improves handling.\n      </p>\n\n      <div className=\"bg-yellow-100 border-l-4 border-yellow-500 p-4 mt-6\">\n        <p className=\"font-bold\">Warning:</p>\n        <p>Never attempt to repair or replace tires yourself if you're not experienced with bicycle mechanics.</p>\n      </div>\n    </div>\n  );\n};\n\nexport default TiresSection;","src/main.tsx":"import React from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\")!);\nroot.render(<App />);"};
+  window.__ENTRY__ = "src/main.tsx";
+</script>
+<script type="module">
+  // Robust loader: transpile each TSX/TS/JSX file with Babel to plain JS (keeping ESM imports),
+  // then rewrite relative imports to blob URLs and let the browser's native module loader
+  // do the rest. Bare specifiers (react, react-dom/client) resolve via the import map.
+  const Babel = window.Babel;
+  const sources = window.__MODULES__ || {};
+  if (!window.__MODULES__) {
+    document.body.innerHTML = '<pre style="padding:24px;font:13px ui-monospace,monospace;color:#b91c1c">Preview bootstrap failed: module map missing. The generated code likely contained a closing &lt;/script&gt; that broke the inline payload.</pre>';
+  }
+  const blobUrls = new Map();
+
+  function resolvePath(spec, fromPath) {
+    if (!spec.startsWith('.') && !spec.startsWith('/')) return null;
+    const fromDir = fromPath.split('/').slice(0, -1);
+    const parts = spec.replace(/^\//, '').split('/');
+    const stack = spec.startsWith('/') ? [] : [...fromDir];
+    for (const p of parts) {
+      if (p === '..') stack.pop();
+      else if (p !== '.' && p !== '') stack.push(p);
+    }
+    const base = stack.join('/');
+    const candidates = [base, base + '.tsx', base + '.ts', base + '.jsx', base + '.js',
+      base + '/index.tsx', base + '/index.ts', base + '/index.jsx', base + '/index.js'];
+    for (const c of candidates) if (sources[c] !== undefined) return c;
+    return null;
+  }
+
+  function rewriteSpecifiers(code, ownPath) {
+    return code
+      .replace(/(from\s*)(['"])([^'"]+)\2/g, (full, prefix, q, spec) => {
+        const r = resolvePath(spec, ownPath);
+        return r && blobUrls.has(r) ? prefix + q + blobUrls.get(r) + q : full;
+      })
+      .replace(/(import\s*\(\s*)(['"])([^'"]+)\2/g, (full, prefix, q, spec) => {
+        const r = resolvePath(spec, ownPath);
+        return r && blobUrls.has(r) ? prefix + q + blobUrls.get(r) + q : full;
+      })
+      .replace(/(import\s+)(['"])([^'"]+)\2/g, (full, prefix, q, spec) => {
+        const r = resolvePath(spec, ownPath);
+        return r && blobUrls.has(r) ? prefix + q + blobUrls.get(r) + q : full;
+      });
+  }
+
+  try {
+    const transpiled = {};
+    for (const path of Object.keys(sources)) {
+      const out = Babel.transform(sources[path], {
+        filename: path,
+        presets: [['typescript', { allExtensions: true, isTSX: true }], ['react', { runtime: 'classic' }]],
+      }).code;
+      transpiled[path] = out;
+    }
+
+    const order = [];
+    const visited = new Set();
+    const visiting = new Set();
+    function visit(path) {
+      if (visited.has(path) || visiting.has(path)) return;
+      visiting.add(path);
+      const code = transpiled[path] || '';
+      const re = /(?:from\s*|import\s*\(\s*|import\s+)['"]([^'"]+)['"]/g;
+      let m;
+      while ((m = re.exec(code)) !== null) {
+        const dep = resolvePath(m[1], path);
+        if (dep) visit(dep);
+      }
+      visiting.delete(path);
+      visited.add(path);
+      order.push(path);
+    }
+    for (const p of Object.keys(transpiled)) visit(p);
+
+    for (const path of order) {
+      const rewritten = rewriteSpecifiers(transpiled[path], path);
+      const blob = new Blob([rewritten], { type: 'text/javascript' });
+      blobUrls.set(path, URL.createObjectURL(blob));
+    }
+
+    const entryUrl = blobUrls.get(window.__ENTRY__);
+    if (!entryUrl) throw new Error('Entry not found: ' + window.__ENTRY__);
+    import(entryUrl).catch(err => {
+      document.body.innerHTML = '<pre style="padding:24px;font:13px ui-monospace,monospace;color:#b91c1c;white-space:pre-wrap">' + (err && err.stack || err) + '</pre>';
+    });
+  } catch (err) {
+    document.body.innerHTML = '<pre style="padding:24px;font:13px ui-monospace,monospace;color:#b91c1c;white-space:pre-wrap">' + (err && err.stack || err) + '</pre>';
+  }
+</script>
+</body>
+</html>
